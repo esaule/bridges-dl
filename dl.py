@@ -17,9 +17,11 @@ action.click(on_element = labelelem) #because of a bug need to click twice befor
 action.click(on_element = elem) #becasue of a bug need to click away
 action.perform()
 
-for i in range(0, 29):
+elements = browser.find_elements_by_xpath("//div[contains(@id,\"slideButton\")]")  #all the slider button
 
-    button = 'slideButton'+str(i)
+for a in elements:
+
+    button = a.get_attribute('id')
     elem = browser.find_element_by_id(button)  # Find the search box
     
 
@@ -27,17 +29,13 @@ for i in range(0, 29):
     # create action chain object 
     action = ActionChains(browser) 
 
-    action.click(on_element = labelelem) #becasue of a bug need to click twice
-    action.pause(1)
-
-    
+    action.click(on_element = labelelem) #toggle label off
+#    action.pause(1)
     # click the item 
-    action.click(on_element = elem) 
-
+    action.click(on_element = elem) #click on tab
     action.pause(1)
-    
-    action.click(on_element = labelelem)
-    action.pause(1)
+    action.click(on_element = labelelem) #toggle label on
+#    action.pause(1)
     
     
     # perform the operation 
@@ -45,7 +43,9 @@ for i in range(0, 29):
 
     svgelem = browser.find_element_by_id('svg0')  # Find the search box
 
-    print (svgelem.get_attribute('outerHTML'))
+    f = open(button+'.svg', 'w')
+    f.write(svgelem.get_attribute('outerHTML'))
+    f.close();
     
     time.sleep(2)
 
