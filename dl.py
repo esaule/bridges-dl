@@ -8,9 +8,9 @@ browser = webdriver.Firefox()
 
 browser.get('http://bridges-cs.herokuapp.com/assignments/555/esaule')
 
-labelelem = browser.find_element_by_id('nodelabels')  # Find the search box
+labelelem = browser.find_element_by_id('nodelabels')  # Find the node toggle button
 
-elem = browser.find_element_by_id('slideButton1')  # Find the search box
+elem = browser.find_element_by_id('slideButton1')  # assumes more than 1 subassignment
 
 action = ActionChains(browser) 
 action.click(on_element = labelelem) #because of a bug need to click twice before
